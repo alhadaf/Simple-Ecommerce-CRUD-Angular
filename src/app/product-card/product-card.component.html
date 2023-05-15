@@ -1,0 +1,40 @@
+<div class="card product-card km">
+  <div class="card-img-top product-card__image km" routerLink="/product/{{ id }}">
+    <img src="{{ image }}" alt="" class="img-fluid" />
+  </div>
+  <div class="card-body product-card__info ">
+    <header class="d-flex align-items-center">
+      <div class="title flex-grow-1">
+        <div class="product-name text-uppercase font-weight-500">{{ title }}</div>
+        <div class="product-short-desc text-secondary">{{ short_desc }}</div>
+      </div>
+      <div class="product-price font-weight-600">{{ price | currency: "USD" }}</div>
+    </header>
+  </div>
+  <div class="card-footer product-card__cta ms mt-">
+    <button
+      class="btn btn-secondary ms"
+      [disabled]="quantity === 0"
+      (click)="
+        onAdd({
+          id: id,
+          price: price,
+          image: image,
+          title: title,
+          maxQuantity: quantity
+        })
+      "
+    >
+      {{ quantity === 0 ? "Out of stock" : "Add to cart" }}
+    </button>
+  </div>
+</div>
+
+<style>
+.ms{
+  text-align: center;
+}
+.km{
+  margin-top: 5px;
+}
+</style>

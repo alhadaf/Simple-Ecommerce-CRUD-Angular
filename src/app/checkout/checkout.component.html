@@ -1,0 +1,137 @@
+<div class="checkout-container container mt-5">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="progress-container">
+        <div class="progress">
+          <div class="progress-bar" [style.width]="getProgressPrecent() + '%'"></div>
+        </div>
+      </div>
+      <div *ngIf="currentStep === 1">
+        <div class="billing-container">
+          <h2>Billing Address</h2>
+          <form>
+            <div
+              class="form-group input-container"
+              *ngFor="let field of billingAddress; index as i"
+            >
+              <label for="">{{ field.name }}</label>
+              <input
+                class="form-control"
+                [type]="field.type"
+                [name]="field.name"
+                [placeholder]="field.placeholder"
+                [(value)]="field.value"
+                [(ngModel)]="field.value"
+              />
+            </div>
+          </form>
+          <button
+            class="btn btn-primary"
+            (click)="submitBilling()"
+            [disabled]="canBillingSubmit()"
+          >
+            Continue
+          </button>
+        </div>
+      </div>
+      <div *ngIf="currentStep === 2">
+        <div class="payment-container">
+          <h2>Payment Details</h2>
+          <form>
+            <div class="form-group input-container">
+              <label for="">Card number</label>
+              <input
+                class="form-control"
+                type="text"
+                name="cardNumber"
+                [(value)]="cardNumber"
+                [(ngModel)]="cardNumber"
+                placeholder="1234 1234 1234 1234"
+              />
+            </div>
+            <div class="form-group input-container">
+              <label for="">Name on card</label>
+              <input
+                class="form-control"
+                type="text"
+                name="cardName"
+                [(value)]="cardName"
+                [(ngModel)]="cardName"
+                placeholder="John Doe"
+              />
+            </div>
+            <div class="form-group‼️">
+              <div class="form-group input-container">
+                <label for="">Expiry date</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="cardExpiry"
+                  [(value)]="cardExpiry"
+                  [(ngModel)]="cardExpiry"
+                  placeholder="06/30"
+                />
+              </div>
+              <div class="form-group input-container">
+                <label for="">Security code</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="cardCode"
+                  [(value)]="cardCode"
+                  [(ngModel)]="cardCode"
+                  placeholder="123"
+                />
+              </div>
+            </div>
+          </form>
+          <button
+            class="btn btn-primary"
+            [disabled]="!canPaymentSubmit()"
+            (click)="submitPayment()"
+          >
+            Continue
+          </button>
+        </div>
+      </div>
+      <div *ngIf="currentStep === 3">
+        <div class="summary-container">
+          <div class="summary-container__order">
+            <h2>Order Summary</h2>
+            <div class="details">
+              <div class="details-item">
+                <div class="item-name">Item(s)</div>
+                <div class="item-value">{{ cartData.products.length }}</div>
+              </div>
+              <div class="details-item">
+                <div class="item-name">Payment method</div>
+                <div class="item-value">Credit</div>
+              </div>
+              <div class="details-item">
+                <div class="item-name">Order total</div>
+                <div class="item-value">{{ cartData.total | currency: "USD" }}</div>
+              </div>
+            </div>
+            <button class="btn btn-primary summary-container__order-button" (click)="submitCheckout()" [disabled]="loading">
+              Place order
+            </button>
+          </div>
+          <div class="summary-container__items">
+            <!-- Order Items -->
+          </div>
+        </div>
+      </div>
+      <div *ngIf="currentStep === 4">
+        <div class="purchase-container text-center">
+          <h2>Thanks for your purchase!</h2>
+          <p>Your order number is {{ orderNumber }}</p>
+          <p>A confirmation email has been sent to {{ email }}</p>
+          <button class="btn btn-primary purchase-container__button" routerLink="/">Go to Home</button>
+        </div>
+      </div>
+    </div>
+    
+    </div>
+  </div>
+
+

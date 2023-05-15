@@ -1,0 +1,53 @@
+<div class="container-md login-container d-flex justify-content-center align-items-center">
+  <div class="form-container p-3 mt-2">
+    <h2 class="text-center">Sign In</h2>
+    <nz-alert
+      *ngIf="error"
+      nzShowIcon
+      nzType="error"
+      [nzMessage]="error"
+      [ngStyle]="{ 'margin-bottom': '1rem' }"
+    ></nz-alert>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input
+          nz-input
+          type="email"
+          name="email"
+          placeholder="Enter email address"
+          [(ngModel)]="email"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          nz-input
+          type="password"
+          name="password"
+          placeholder="Enter your password"
+          [(ngModel)]="password"
+          class="form-control"
+        />
+      </div>
+      <div class="d-flex justify-content-center mt-2">
+        <button
+          nz-button
+          type="submit"
+          [disabled]="!canSubmit()"
+          [nzLoading]="loading"
+          class="btn btn-primary mb-3"
+        >
+          Sign in
+        </button>
+      </div>
+      <div class="text-center">
+        <a routerLink="/register">Create a new account</a>
+      </div>
+      <div class="text-center">
+        <a href="">Forgot password?</a>
+      </div>
+    </form>
+  </div>
+</div>

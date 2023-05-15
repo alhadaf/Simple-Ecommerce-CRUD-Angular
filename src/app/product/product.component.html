@@ -1,0 +1,90 @@
+<div class="product-container m-5" *ngIf="!loading">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-6">
+        <!-- Single Image -->
+        <swiper
+          [zoom]="true"
+          [slidesPerView]="1"
+          [spaceBetween]="50"
+          [pagination]="true"
+          *ngIf="showcaseImages.length === 0"
+        >
+          <ng-template swiperSlide [zoom]="true">
+            <img src="{{ product.image }}" alt="`Product image`" class="img-fluid" />
+          </ng-template>
+        </swiper>
+        <!-- Multiple images -->
+        <swiper
+          [zoom]="true"
+          [slidesPerView]="1"
+          [spaceBetween]="50"
+          [pagination]="true"
+          *ngIf="showcaseImages.length > 0"
+        >
+          <ng-template
+            swiperSlide
+            [zoom]="true"
+            *ngFor="let image of showcaseImages; index as i"
+          >
+            <img src="{{ image }}" alt="`Product image`" class="img-fluid" />
+          </ng-template>
+        </swiper>
+      </div>
+      <div class="col-lg-6">
+        <h2 class="title mb-4">{{ product.title }}</h2>
+        <div class="reviews mb-4">
+          <div class="rating d-flex align-items-center">
+            <i class="fas fa-star mr-1"></i>
+            <i class="fas fa-star mr-1"></i>
+            <i class="fas fa-star mr-1"></i>
+            <i class="fas fa-star mr-1"></i>
+            <i class="far fa-star"></i>
+            <span class="ml-3">10 Review(s)</span>
+          </div>
+          <span class="review-link" style="cursor: pointer">Add your review</span>
+        </div>
+        <div class="price-container mb-4">
+          <h2 class="price">{{ product.price | currency: "USD" }}</h2>
+          <span
+            class="availability"
+            [ngStyle]="{ color: quantity > 0 ? 'inherit' : 'red' }"
+            >{{ quantity === 0 ? "Out of stock" : "In stock" }}</span
+          >
+        </div>
+        <div class="description mb-4">{{ product.description }}</div>
+        <div class="cta">
+          <div class="add-to-cart d-flex align-items-center mb-4">
+            <span class="mr-2">QTY:</span>
+            <input type="number" [(ngModel)]="quantity" [min]="product.quantity > 0 ? 1 : 0" [max]="product.quantity > 0 ? product.quantity : 0" class="form-control w-25" [step]="1">
+            <button
+            class="btn btn-primary ml-2"
+            (click)="addToCart()"
+            [disabled]="quantity === 0"
+            >
+            Add to cart
+            </button>
+            </div>
+            <div class="category mb-4">
+            <span>Category: </span> {{ product.category }}
+            </div>
+            <div class="social-links">
+            <span>Share: </span>
+            <i class="fab fa-facebook mr-2"></i>
+            <i class="fab fa-twitter mr-2"></i>
+            <i class="fab fa-google-plus mr-2"></i>
+            <i class="fas fa-envelope"></i>
+            </div>
+            </div>
+            </div>
+            </div>
+            
+              </div>
+              <div class="additional"></div>
+            </div>
+
+<style>
+  .ml5{
+    margin-left: 5px;
+  }
+</style>

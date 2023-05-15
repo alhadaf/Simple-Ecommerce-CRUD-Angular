@@ -1,0 +1,15 @@
+@media screen and (min-width: 768px) {
+  .container {
+  padding: 48px 16px 240px;
+  }
+  .form-group {
+  padding: 36px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  }
+  }
+  
+  .btn-loading {
+  pointer-events: none;
+  background-color: #ddd !important;
+  }

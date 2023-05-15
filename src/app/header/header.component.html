@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light my-navbar-color">
+  <div class="container-fluid">
+    <ul class="navbar-nav d-flex justify-content-start">
+      <li class="navbar-brand left-brand">
+        <a class="nav-link active" routerLink="/" >ALiHassan</a>
+      </li>
+    </ul>
+    <div class="navbar-nav d-flex justify-content-end">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse ma" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active btn-primary ms" aria-current="page" routerLink="/" (click)="toggleMenu()">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn-primary ms" routerLink="/cart" (click)="toggleMenu()" >Cart</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn-primary ms" routerLink="/profile" (click)="toggleMenu()" *ngIf="isLoggedIn">Profile</a>
+        </li>
+		<li class="nav-item">
+          <a class="nav-link btn-primary ms" routerLink="/order-history"   (click)="toggleMenu()" *ngIf="isLoggedIn">Order History</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-primary ms" aria-current="page" routerLink="/login" (click)="toggleMenu()" *ngIf="!isLoggedIn">Sign In</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-primary ms" aria-current="page" routerLink="/register" (click)="toggleMenu()" *ngIf="!isLoggedIn">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-primary ms" aria-current="page" (click)="logout() && toggleMenu()" *ngIf="isLoggedIn">Sign Out</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  </div>
+</nav>
+
+<style>
+  .my-navbar-color{
+    background-color: white;
+}
+.ms{
+  margin-left: 5px;
+}
+.left-brand{
+  display: flex;
+  align-items: center;
+}
+
+</style>
